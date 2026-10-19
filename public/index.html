@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Productivity Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Productivity Dashboard</h1>
+    <span id="today" class="muted"></span>
+  </header>
+
+  <main class="grid">
+    <section class="stats" id="stats">
+      <div class="card stat"><span class="label">Pending</span><span class="value" id="s-pending">0</span></div>
+      <div class="card stat"><span class="label">Done</span><span class="value" id="s-done">0</span></div>
+      <div class="card stat"><span class="label">Overdue</span><span class="value warn" id="s-overdue">0</span></div>
+      <div class="card stat"><span class="label">Due today</span><span class="value" id="s-today">0</span></div>
+      <div class="card stat"><span class="label">Completion</span><span class="value" id="s-rate">0%</span></div>
+      <div class="card stat"><span class="label">Focus today</span><span class="value" id="s-focus">0m</span></div>
+    </section>
+
+    <section class="card tasks">
+      <h2>Tasks</h2>
+      <form id="task-form" class="task-form">
+        <input id="t-title" placeholder="What needs to get done?" maxlength="200" required />
+        <select id="t-priority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+        <input id="t-due" type="date" />
+        <button type="submit">Add</button>
+      </form>
+
+      <div class="filters" id="filters">
+        <button data-f="all" class="active">All</button>
+        <button data-f="todo">To do</button>
+        <button data-f="done">Done</button>
+      </div>
+
+      <ul id="task-list" class="task-list"></ul>
+      <p id="empty" class="muted" hidden>No tasks here yet.</p>
+    </section>
+
+    <section class="card focus">
+      <h2>Focus timer</h2>
+      <div class="timer" id="timer">25:00</div>
+      <div class="timer-controls">
+        <select id="f-minutes">
+          <option value="25" selected>25 min</option>
+          <option value="15">15 min</option>
+          <option value="50">50 min</option>
+          <option value="1">1 min (test)</option>
+        </select>
+        <button id="f-start">Start</button>
+        <button id="f-reset" class="ghost">Reset</button>
+      </div>
+      <p class="muted small">Finished sessions are saved and counted in your stats.</p>
+    </section>
+
+    <section class="card chart">
+      <h2>Last 7 days</h2>
+      <div class="legend">
+        <span><i class="dot a"></i> Tasks completed</span>
+        <span><i class="dot b"></i> Focus minutes</span>
+      </div>
+      <div id="chart" class="bars"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
